@@ -18,10 +18,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const initFirebaseApp = () => {
-  const app = initializeApp(firebaseConfig, "track-da-baby");
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-
-  return { app, analytics, auth };
-};
+export const app = initializeApp(firebaseConfig, "track-da-baby");
+export const analytics = getAnalytics(app);
+export const auth = getAuth(app);
