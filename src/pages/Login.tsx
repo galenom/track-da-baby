@@ -1,11 +1,10 @@
 import React from "react";
-import { getAuth, signInWithRedirect } from "firebase/auth";
+import { getAuth, getRedirectResult, signInWithRedirect } from "firebase/auth";
 import GoogleButton from "react-google-button";
 import { provider } from "../utils/firebase/sso";
-import { useFirebaseApp } from "../utils/firebase/context";
+import { app } from "../utils/firebase/init";
 
 export const Login = () => {
-  const app = useFirebaseApp();
   const signIn = () => {
     const auth = getAuth(app);
     signInWithRedirect(auth, provider);
