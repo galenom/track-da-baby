@@ -9,7 +9,9 @@ export const FirebaseContext = React.createContext<FirebaseContextDTO>({
   analytics: undefined,
 });
 
-export const useFirebaseContext = () => useContext(FirebaseContext);
+export const useFirebaseApp = () => useContext(FirebaseContext).app;
+export const useFirebaseAuth = () => useContext(FirebaseContext).auth;
+export const useFirebaseAnalytics = () => useContext(FirebaseContext).analytics;
 
 export interface FirebaseContextDTO {
   app?: FirebaseApp;
