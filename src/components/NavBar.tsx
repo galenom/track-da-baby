@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 // import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import { useNavigate } from "react-router-dom";
 // import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles: any = makeStyles((theme) => ({
@@ -17,7 +18,13 @@ const useStyles: any = makeStyles((theme) => ({
 }));
 
 export const NavBar = () => {
+  const navigate = useNavigate();
   const classes = useStyles();
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <AppBar position="static">
@@ -33,7 +40,9 @@ export const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             TrackDaBaby
           </Typography>
-          <Button color="inherit">Sign-in</Button>
+          <Button color="inherit" onClick={navigateToLogin}>
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </>
