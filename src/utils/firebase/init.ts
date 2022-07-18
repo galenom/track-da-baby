@@ -19,9 +19,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const initFirebaseApp = () => {
-  const firApp = initializeApp(firebaseConfig, "track-da-baby");
-  const analytics = getAnalytics(firApp);
-  const auth = getAuth(firApp);
+  const app = initializeApp(firebaseConfig, "track-da-baby");
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
 
-  return { firApp, analytics, auth };
+  return { app, analytics, auth };
 };
