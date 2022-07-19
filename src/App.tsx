@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { RequireAuth } from "./components/RequireAuth";
+import { AuthContext } from "./utils/AuthContext";
+import { getRedirectResult, User } from "firebase/auth";
+import { auth } from "./utils/firebase/init";
 
 function App() {
+  const [user, setUser] = useState<null | User>(null);
+
+  useEffect(() => {
+    getRedirectResult(auth).then((result) => {
+      if (result) {
+        setUser(result.user);
+      }
+    });
+  }, []);
+
   return (
-    <>
+    <AuthContext.Provider value={{ user, setUser }}>
       <NavBar />
       <Routes>
         <Route
@@ -26,7 +39,7 @@ function App() {
           <Route index element={<LeagueStandings />} />
         </Route> */}
       </Routes>
-    </>
+    </AuthContext.Provider>
   );
 }
 
