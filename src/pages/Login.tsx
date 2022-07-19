@@ -1,5 +1,5 @@
 import React from "react";
-import { getAuth, getRedirectResult, signInWithRedirect } from "firebase/auth";
+import { getAuth, signInWithRedirect } from "firebase/auth";
 import GoogleButton from "react-google-button";
 import { provider } from "../utils/firebase/sso";
 import { app } from "../utils/firebase/init";
