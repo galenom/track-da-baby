@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,9 +17,11 @@ const firebaseConfig = {
   messagingSenderId: "998792695428",
   appId: "1:998792695428:web:096ea2a0ef7c953581fcd1",
   measurementId: "G-S3VHTCBPQL",
+  databaseURL: "https://trackdababy-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig, "track-da-baby");
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+export const database = getDatabase(app);
