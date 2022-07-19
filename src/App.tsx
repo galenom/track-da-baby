@@ -31,25 +31,27 @@ function App() {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <NavBar />
-      <Routes>
-        <Route
-          index
-          element={
-            <RequireAuth>
-              <Home />
-            </RequireAuth>
-          }
-        />
-        <Route path="login" element={<Login />} />
-        {/* <Route path="teams" element={<Teams />}>
+    <div className="app-container">
+      <AuthContext.Provider value={{ user, setUser }}>
+        <NavBar />
+        <Routes>
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route path="login" element={<Login />} />
+          {/* <Route path="teams" element={<Teams />}>
           <Route path=":teamId" element={<Team />} />
           <Route path="new" element={<NewTeamForm />} />
           <Route index element={<LeagueStandings />} />
         </Route> */}
-      </Routes>
-    </AuthContext.Provider>
+        </Routes>
+      </AuthContext.Provider>
+    </div>
   );
 }
 
