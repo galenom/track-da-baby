@@ -5,12 +5,18 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import React from "react";
 import "./DiaperSelect.css";
 import { DiaperState } from "../utils/diaper/types";
+import { useAuthorizedUser } from "../utils/AuthContext";
+import { logDiaperState } from "../utils/firebase/database";
 
 interface DiaperSelectProps {}
 
 export const DiaperSelect = (_: DiaperSelectProps) => {
-  const handleClick = (type: DiaperState) => {
-    alert(`selected ${type}`);
+  const user = useAuthorizedUser();
+
+  const handleClick = (diaperState: DiaperState) => {
+    if (user) {
+      logDiaperState(user.uid, diaperState);
+    }
   };
 
   return (
@@ -30,7 +36,7 @@ export const DiaperSelect = (_: DiaperSelectProps) => {
           💧
         </IconButton>
       </ButtonGroup>
-      {/* TODO: Allow custom diaper  */}
+      {/* TODO: Allow custom diaper time  */}
       {/* <IconButton size="large">
         <DashboardCustomizeIcon />
       </IconButton> */}
