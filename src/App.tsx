@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
@@ -9,13 +9,22 @@ import { AuthContext } from "./utils/AuthContext";
 import { getRedirectResult, User } from "firebase/auth";
 import { auth } from "./utils/firebase/init";
 
+export const LOCAL_STORAGE_REDIRECT_KEY = "LOCAL_STORAGE_REDIRECT_KEY";
+
 function App() {
   const [user, setUser] = useState<null | User>(null);
+  const navigate = useNavigate();
+
+  const redirectUrl = window.localStorage.getItem(LOCAL_STORAGE_REDIRECT_KEY);
 
   useEffect(() => {
     getRedirectResult(auth).then((result) => {
       if (result) {
         setUser(result.user);
+        if (redirectUrl) {
+          window.localStorage.removeItem(LOCAL_STORAGE_REDIRECT_KEY);
+          navigate(redirectUrl);
+        }
       }
     });
   }, []);

@@ -1,17 +1,18 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { LOCAL_STORAGE_REDIRECT_KEY } from "../App";
 import { useAuthorizedUser } from "../utils/AuthContext";
-import { auth } from "../utils/firebase/init";
 
 interface RequireAuthProps {
   children: any;
 }
 
 export const RequireAuth = ({ children }: RequireAuthProps) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   if (!useAuthorizedUser()) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    window.localStorage.setItem(LOCAL_STORAGE_REDIRECT_KEY, pathname);
+    return <Navigate to="/login" replace />;
   }
   return children;
 };
